@@ -92,7 +92,6 @@ lines(myData$DateTime,
       col="blue")
 legend("topright",
        lty = c(1,1,1),
-       bty="n",
        col = c("black","red","blue"),
        legend=c("Sub_metering_1","Sub_metering_2","Sub_metering_3"))
 dev.copy(png,"plot3.png")
@@ -144,9 +143,10 @@ lines(myData$DateTime,
       myData$Sub_metering_3,
       col="blue")
 legend("topright",
+       inset=.02,
+       cex = .75,
        lty = c(1,1,1),
        bty = "n",
-       cex = 0.75,
        col = c("black","red","blue"),
        legend=c("Sub_metering_1","Sub_metering_2","Sub_metering_3"))
 plot(myData$DateTime,
