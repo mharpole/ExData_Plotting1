@@ -81,7 +81,7 @@ hist(myData$Global_active_power,col = "red",
      main="Global Active Power")
 ```
 
-![](Exploratory-Data-Analysis-Project-1_files/figure-gfm/plot%201-1.png)<!-- -->
+![](codebook_plottting1_files/figure-gfm/plot%201-1.png)<!-- -->
 
 ``` r
 dev.copy(png,"plot1.png")
@@ -126,7 +126,7 @@ plot(myData$DateTime,
      ylab = "Global Active Power (kilowats)")
 ```
 
-![](Exploratory-Data-Analysis-Project-1_files/figure-gfm/plot2-1.png)<!-- -->
+![](codebook_plottting1_files/figure-gfm/plot2-1.png)<!-- -->
 
 ``` r
 dev.copy(png,"plot2.png")
