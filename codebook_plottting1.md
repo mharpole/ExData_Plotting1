@@ -175,6 +175,7 @@ lines(myData$DateTime,
       col="blue")
 legend("topright",
        lty = c(1,1,1),
+       bty="n",
        col = c("black","red","blue"),
        legend=c("Sub_metering_1","Sub_metering_2","Sub_metering_3"))
 ```
@@ -194,3 +195,120 @@ dev.off()
 
     ## quartz_off_screen 
     ##                 2
+
+## Plot 4
+
+There are 4 plots in the final graph. Plot2 is in the top left, voltage
+versus datime is in top right, plot 3 is in bottom left, and globale
+reactive power versus datetime is bottom right. Chart Components.
+
+- Top Left
+  - copy of plot2
+- Top Right
+  - y lable is voltage
+  - x label is datetime
+  - black line
+- Bottom Left
+  - copy of plot3
+- Bottom Right +y label is Global_reactive_power
+
+``` r
+myData <- read_delim("household_power_consumption.txt",
+                     na=c("?"),
+                     show_col_types = FALSE) %>% 
+  mutate(Date=lubridate::dmy(Date)) %>% 
+  filter(between(Date, as.Date('2007-02-01'), as.Date('2007-02-02'))) %>% 
+  mutate(DateTime = lubridate::ymd_hms(paste(myData$Date,myData$Time)) )
+par(mfrow=c(2,2))
+plot(myData$DateTime,
+     myData$Global_active_power,
+     type = "l",
+     xlab = "",
+     ylab = "Global Active Power (kilowats)")
+plot(myData$DateTime,
+     myData$Voltage,
+     type = "l",
+     xlab = "datetime",
+     ylab = "Voltage")
+plot(myData$DateTime,
+     myData$Sub_metering_1,
+     type = "l",
+     xlab = "",
+     ylab = "Enerygy sub metering")
+lines(myData$DateTime,
+     myData$Sub_metering_2,
+     col="red")
+lines(myData$DateTime,
+      myData$Sub_metering_3,
+      col="blue")
+legend("topright",
+       lty = c(1,1,1),
+       bty = "n",
+       cex = 0.7,
+       col = c("black","red","blue"),
+       legend=c("Sub_metering_1","Sub_metering_2","Sub_metering_3"))
+plot(myData$DateTime,
+     myData$Global_reactive_power,
+     type = "l",
+     xlab = "datetime",
+     ylab = "Global_reactive_power")
+```
+
+![](codebook_plottting1_files/figure-gfm/plot4-1.png)<!-- -->
+
+``` r
+dev.copy(png,"plot4.png")
+```
+
+    ## quartz_off_screen 
+    ##                 3
+
+``` r
+dev.off()
+```
+
+    ## quartz_off_screen 
+    ##                 2
+
+# Session Information
+
+    ## R version 4.2.2 (2022-10-31)
+    ## Platform: aarch64-apple-darwin20 (64-bit)
+    ## Running under: macOS Ventura 13.1
+    ## 
+    ## Matrix products: default
+    ## BLAS:   /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/lib/libRblas.0.dylib
+    ## LAPACK: /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/lib/libRlapack.dylib
+    ## 
+    ## locale:
+    ## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+    ## 
+    ## attached base packages:
+    ## [1] stats     graphics  grDevices utils     datasets  methods   base     
+    ## 
+    ## other attached packages:
+    ## [1] forcats_0.5.2   stringr_1.5.0   dplyr_1.0.10    purrr_1.0.1    
+    ## [5] readr_2.1.3     tidyr_1.2.1     tibble_3.1.8    ggplot2_3.4.0  
+    ## [9] tidyverse_1.3.2
+    ## 
+    ## loaded via a namespace (and not attached):
+    ##  [1] tidyselect_1.2.0    xfun_0.36           haven_2.5.1        
+    ##  [4] gargle_1.2.1        colorspace_2.0-3    vctrs_0.5.1        
+    ##  [7] generics_0.1.3      htmltools_0.5.4     yaml_2.3.6         
+    ## [10] utf8_1.2.2          rlang_1.0.6         pillar_1.8.1       
+    ## [13] withr_2.5.0         glue_1.6.2          DBI_1.1.3          
+    ## [16] bit64_4.0.5         dbplyr_2.3.0        modelr_0.1.10      
+    ## [19] readxl_1.4.1        lifecycle_1.0.3     munsell_0.5.0      
+    ## [22] gtable_0.3.1        cellranger_1.1.0    rvest_1.0.3        
+    ## [25] evaluate_0.20       knitr_1.41          tzdb_0.3.0         
+    ## [28] fastmap_1.1.0       parallel_4.2.2      fansi_1.0.3        
+    ## [31] highr_0.10          broom_1.0.2         scales_1.2.1       
+    ## [34] backports_1.4.1     googlesheets4_1.0.1 vroom_1.6.0        
+    ## [37] jsonlite_1.8.4      bit_4.0.5           fs_1.5.2           
+    ## [40] hms_1.1.2           digest_0.6.31       stringi_1.7.12     
+    ## [43] grid_4.2.2          cli_3.6.0           tools_4.2.2        
+    ## [46] magrittr_2.0.3      crayon_1.5.2        pkgconfig_2.0.3    
+    ## [49] ellipsis_0.3.2      xml2_1.3.3          reprex_2.0.2       
+    ## [52] googledrive_2.0.0   lubridate_1.9.0     timechange_0.2.0   
+    ## [55] assertthat_0.2.1    rmarkdown_2.20      httr_1.4.4         
+    ## [58] rstudioapi_0.14     R6_2.5.1            compiler_4.2.2
