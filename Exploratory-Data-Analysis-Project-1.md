@@ -96,3 +96,48 @@ dev.off()
 
     ## quartz_off_screen 
     ##                 2
+
+## Plot 2
+
+This plot is a line graph showing global active power across 3 days. The
+graph componenets are:
+
+- y label is Global Active Power (kilowats).
+- x label is days of the week
+- no main title
+
+``` r
+myFiles <- list.files(pattern="*.txt")
+myFiles
+```
+
+    ## [1] "household_power_consumption.txt"
+
+``` r
+myData <- read_delim(myFiles[1],na=c("?"),show_col_types = FALSE) %>% 
+  mutate(Date=lubridate::dmy(Date)) %>% 
+  filter(between(Date, as.Date('2007-02-01'), as.Date('2007-02-02'))) %>% 
+  mutate(DateTime = lubridate::ymd_hms(paste(myData$Date,myData$Time)) )
+
+plot(myData$DateTime,
+     myData$Global_active_power,
+     type = "l",
+     xlab = "",
+     ylab = "Global Active Power (kilowats)")
+```
+
+![](Exploratory-Data-Analysis-Project-1_files/figure-gfm/plot2-1.png)<!-- -->
+
+``` r
+dev.copy(png,"plot2.png")
+```
+
+    ## quartz_off_screen 
+    ##                 3
+
+``` r
+dev.off()
+```
+
+    ## quartz_off_screen 
+    ##                 2
