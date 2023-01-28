@@ -245,6 +245,7 @@ legend("topright",
        cex = .75,
        lty = c(1,1,1),
        bty = "n",
+       
        col = c("black","red","blue"),
        legend=c("Sub_metering_1","Sub_metering_2","Sub_metering_3"))
 plot(myData$DateTime,
